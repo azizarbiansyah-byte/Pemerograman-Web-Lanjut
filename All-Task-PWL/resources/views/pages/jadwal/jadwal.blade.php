@@ -2,10 +2,8 @@
 
 @section('content')
 
-  <div>
-    <h2>Jadwal Kuliah</h2>
-  </div> 
   <div class="container mt-3">
+    <h2>Jadwal Kuliah</h2>
     <div class="card p-3">
     
     <table class="table table-hover table-bordered table-striped">

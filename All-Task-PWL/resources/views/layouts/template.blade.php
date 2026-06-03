@@ -9,19 +9,16 @@
     <title>Beranda</title>
     <style>
       .footer {
-      height: 50px;
-      line-height: 50px;
-      background-color: #303030;
-      color: white;
-      width: 100%;
-      text-align: center;
-      margin-top: 20px;
-      } 
+        background-color: #303030;
+        color: white;
+        text-align: center;
+        padding: 15px;
+      }
     </style>
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
+  <div class="container">
     <a class="navbar-brand" href="#">MyBlog</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -51,9 +48,11 @@
     </div>
   </div>
 </nav>
-    @yield('content')
+    <div class="flex-grow-1">
+      @yield('content')
+    </div>
 
-    @include('layouts.footer')
+      @include('layouts.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 

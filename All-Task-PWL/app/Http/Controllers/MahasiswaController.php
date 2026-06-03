@@ -48,7 +48,9 @@ class MahasiswaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $detailMahasiswa = Mahasiswa::findOrFail($id);
+
+        return view('pages.mahasiswa.detail_mahasiswa', compact('detailMahasiswa'));
     }
 
     /**
@@ -56,7 +58,9 @@ class MahasiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $detailMahasiswa = Mahasiswa::findOrFail($id);
+
+        return view('pages.mahasiswa.form_add_mahasiswa', compact('detailMahasiswa'));
     }
 
     /**
@@ -64,7 +68,15 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'npm' => 'required|numeric',
+            'nidn' => 'required|numeric',
+            'nama' => 'required|min:5'
+        ]);
+    
+        Mahasiswa::where('npm', $id)->update($validated);
+
+        return redirect()->route('mahasiswa')->with('success', 'Data Mahasiswa berhasil dirubah');
     }
 
     /**
@@ -72,6 +84,8 @@ class MahasiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $detailMahasiswa = Mahasiswa::findOrFail($id);
+        $detailMahasiswa->delete();
+        return redirect()->route('mahasiswa')->with('success', 'Data Mahasiswa berhasil dihapus');
     }
 }

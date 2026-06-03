@@ -38,7 +38,7 @@ class DosenController extends Controller
     
         Dosen::create($validated);
 
-        return redirect()->route('dosen');
+        return redirect()->route('dosen')->with('Success', 'Data Dosen berhasil ditambahkan');
     }
 
     /**
@@ -46,7 +46,9 @@ class DosenController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $detailDosen = Dosen::findOrFail($id);
+
+        return view('pages.dosen.detail_dosen', compact('detailDosen'));
     }
 
     /**
@@ -54,7 +56,9 @@ class DosenController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $detailDosen = Dosen::findOrFail($id);
+
+        return view('pages.dosen.form_add_dosen', compact('detailDosen'));
     }
 
     /**
@@ -62,7 +66,14 @@ class DosenController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'nidn' => 'required|numeric',
+            'nama' => 'required|min:5'
+        ]);
+    
+        Dosen::where('nidn', $id)->update($validated);
+
+        return redirect()->route('dosen')->with('success', 'Data Dosen berhasil dirubah');
     }
 
     /**
@@ -70,6 +81,8 @@ class DosenController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $detailDosen = Dosen::findOrFail($id);
+        $detailDosen->delete();
+        return redirect()->route('dosen')->with('success', 'Data dosen berhasil dihapus');
     }
 }

@@ -28,3 +28,18 @@ Route::get('/matakuliah', [MatakuliahController::class, 'index'])->name('matakul
 Route::get('/krs', [KrsController::class, 'index'])->name('krs');
 
 Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal');
+
+Route::get('/show/{id}/detail-dosen',[DosenController::class, 'show'])->name('detail_dosen');
+
+Route::get('/edit/{id}/edit-dosen',[DosenController::class, 'edit'])->name('edit_dosen');
+Route::put('/update/{id}/update-dosen',[DosenController::class, 'update'])->name('update_dosen');
+
+Route::delete('/delete/{id}/delete-dosen',[DosenController::class, 'destroy'])->name('delete_dosen');
+
+Route::get('/show/{id}/detail-mahasiswa',[MahasiswaController::class, 'show'])->name('detail_mahasiswa');
+
+Route::get('/edit/{id}/edit-mahasiswa',[MahasiswaController::class, 'edit'])->name('edit_mahasiswa');
+Route::put('/update/{id}/update-mahasiswa',[MahasiswaController::class, 'update'])->name('update_mahasiswa');
+
+Route::delete('/delete/{id}/delete-mahasiswa',[MahasiswaController::class, 'destroy'])->name('delete_mahasiswa');
+
